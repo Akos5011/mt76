@@ -284,14 +284,10 @@ void mt7615_init_txpower(struct mt7615_dev *dev,
 	    (MT_EE_RATE_POWER_EN | MT_EE_RATE_POWER_SIGN))
 		delta += rate_val & MT_EE_RATE_POWER_MASK;
 
-	if (is_mt7663(&dev->mt76)) {
+	if (is_mt7663(&dev->mt76) || mt7615_ext_pa_enabled(dev, band)) {
 		target_chains = n_chains;
 	} else {
-		if (mt7615_ext_pa_enabled(dev, band)) {
-		    target_chains = n_chains;
-		} else {
-			target_chains = 1;
-		}
+		target_chains = 1;
 	}
 
 	for (i = 0; i < sband->n_channels; i++) {
