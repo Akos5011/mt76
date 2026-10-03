@@ -334,8 +334,10 @@ int mt7615_eeprom_init(struct mt7615_dev *dev, u32 addr)
 		memcpy(dev->mt76.eeprom.data, dev->mt76.otp.data,
 		       dev->mt76.otp.size);
 	} else {
-		dev->flash_eeprom = true;
-		mt7615_cal_free_data(dev);
+ 		dev->flash_eeprom = true;
+ 		mt7615_cal_free_data(dev);
+		((u8 *)dev->mt76.eeprom.data)[MT_EE_CALDATA_FLASH] &= ~GENMASK(4, 0);
+		dev_info(dev->mt76.dev, "enabling online calibration");
 	}
 
 	mt7615_eeprom_parse_hw_cap(dev);
