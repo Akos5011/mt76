@@ -379,6 +379,7 @@ mt7615_mcu_rx_csa_notify(struct mt7615_dev *dev, struct sk_buff *skb)
 static void
 mt7615_mcu_rx_radar_detected(struct mt7615_dev *dev, struct sk_buff *skb)
 {
+	dev_info(dev->mt76.dev, "radar detected");
 	return;
 }
 
