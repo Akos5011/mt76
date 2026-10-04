@@ -226,7 +226,7 @@ int mt7615_eeprom_get_target_power_index(struct mt7615_dev *dev,
 		}
 		index += 5 * group;
 	}
-
+	dev_info(dev->mt76.dev, "target power for %d is %d", chain_idx, index);
 	return index;
 }
 
